@@ -1,0 +1,301 @@
+* {
+	-webkit-text-size-adjust: none;
+	margin: 0px;
+	padding: 0px;
+}
+
+@font-face {
+	font-family: 'PusabRegular';
+	src: url('../fonts/PUSAB___.eot');
+	src: local('Pusab'), url('../fonts/PUSAB___.woff') format('woff'),
+		url('../fonts/PUSAB___.ttf') format('truetype'),
+		url('../fonts/PUSAB___.svg#Pusab') format('svg');
+}
+
+body {
+	margin: 0px 10px 5px 10px;
+	padding: 0 0;
+	font-family: "Verdana", "Arial", "sans-serif";
+	background: #fff;
+}
+
+header {
+	margin: 0px 0 5px 0;
+	background: #fff;
+	height: 20px;
+	border-bottom: 1px solid #C9D7F1;
+}
+
+header #projectName {
+	color: #000;
+	font-size: 0.9em;
+	font-weight: bold;
+	letter-spacing: 0.1em;
+	margin: 5px 0 0 0;
+	padding: 0px;
+	text-transform: uppercase;
+	float: left;
+}
+
+header .info {
+	width: 91%;
+	float: right;
+	border-left: 0px solid #EBEFF9;
+	padding: 0 0 0 0;
+	font-size: 0.7em;
+}
+
+.xxx {
+	width: 100px;
+	float: right;
+	border-left: 0px solid #EBEFF9;
+	border-bottom: 0px solid #EBEFF9;
+	padding: 39px 0 0 0;
+	font-size: 0.8em;
+	font-family: "Courier", "Verdana", "Arial", "sans-serif";
+}
+
+#summaryInfo {
+	float: right;
+	color: #000;
+	font-style: normal;
+	font-size: 0.8em;
+	font-weight: normal;
+}
+
+#search {
+	margin: 0 0 0px 0;
+	border: 0px solid #f00;
+	color: #000;
+	font-size: 0.8em;
+	height: 65px;
+	margin: 0 0 10px 0;
+}
+
+#status { /*width: auto;*/
+	background: #ffff99;
+	/* 	-webkit-border-radius: 6px; */
+	padding: 1px 3px 1px 3px;
+	display: none;
+	font-family: "Courier", "Verdana", "Arial", "sans-serif";
+}
+
+#chinese {
+	font-family: 'WenQuanYi Micro Hei';
+}
+
+#idInputText {
+	float: left;
+}
+
+#idButton {
+	float: left;
+}
+
+#idButton input {
+	margin: 0 0 0 5px;
+	font-size: 0.8em;
+}
+
+#idLabelEn {
+	margin: 0 0px 0 0px;
+}
+
+#display {
+	padding: 0 0 0 0;
+	margin: 10px 0 0 0;
+	height: 500px;
+}
+
+ul {
+	margin: 0 0 0 0;
+	display: block;
+	list-style-type: disc;
+	display: block;
+}
+
+ul li {
+	background: #fff;
+	font-size: 0.8em;
+	/*line-height: 220%;*/
+	list-style-type: none;
+	margin: 3px 0;
+	padding: 0 0;
+	position: relative;
+}
+
+ul li strong {
+	color: #000;
+	display: block;
+	font-weight: bold;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	width: 66%;
+}
+
+ul li em.badly {
+	color: #000;
+}
+
+ul li em {
+	font-family: PusabRegular, Arial;
+	font-size: 0.8em;
+	font-style: normal;
+	font-weight: bold;
+	position: absolute;
+	right: 7px;
+	top: 2px;
+}
+
+#dicTitle {
+	margin: 0 0 10px 0;
+	padding: 0 5px 0 5px;
+	height: 25px;
+	border-top: 1px solid #36c;
+	background-color: #EBEFF9;
+	line-height: 25px;
+	font-size: 0.8em;
+	font-weight: bold;
+}
+
+#dictionary {
+	margin: 0 0 0 5px;
+	padding: 0 0 0 0;
+	width: 80%;
+	float: left;
+	border-right: 0px solid #36c;
+}
+
+.colorStyleTable {
+	background: #EBEFF9;
+}
+
+.highlightEqual {
+	background: #81CC22;
+	/*#228822
+	#56C909
+	#81CC22
+	*/
+}
+
+.highlightLike { /*background: #36c; background: #0F67A1;*/
+	/*background: #36c;
+	#2D48D3*/
+	background: #2D48D3;
+}
+
+.highlightNoMatch {
+	background: #F5204D;
+	/* #F5204D
+	D74937*/
+}
+
+.error {
+	color: #f00;
+}
+
+.colunmColor {
+	width: 1%;
+}
+
+.columnEn {
+	width: 15%;
+}
+
+.columnCn {
+	font-family: 'WenQuanYi Micro Hei';
+	width: 60%;
+}
+
+.columnP {
+	width: 17%;
+}
+
+.classColumnCount {
+	text-align: center;
+}
+
+.inputField {
+	margin: 3px 0;
+}
+
+.inputField input {
+	border: 1px solid #666;
+	padding: 0 0 0px 1px;
+	width: 500px;
+}
+
+#btnSearch {
+	margin: 0 0 0 5px;
+	width: 60px;
+}
+
+#btnLC {
+	margin: 0 0 0 5px;
+	width: 30px;
+}
+
+#btnCount {
+	margin: 0 0 0 5px;
+	width: 50px;
+}
+
+#btnSearchYD {
+	margin: 0 0 0 5px;
+	width: 70px;
+}
+
+#btnAddOrUpdate {
+	margin: 0 0 0 5px;
+	width: 150px;
+}
+
+#btnClear {
+	margin: 0 0 0 5px;
+	width: 50px;
+}
+
+.inputField span {
+	display: inline-block;
+	width: 100px;
+}
+
+#template {
+	display: none;
+}
+
+#top10 {
+	width: 16%;
+	float: right;
+	border-left: 0px solid #666;
+	margin: 20px 0 0 0;
+}
+
+#top10 ul li {
+	color: #00f;
+	cursor: pointer;
+	padding: 1px 0 0 0;
+	text-decoration: underline;
+}
+
+.count {
+	float: right;
+	width: 96px;
+	text-align: right;
+}
+
+#iconLoading {
+	margin: 3px 0 0 3px;
+	float: left;
+	display: none;
+	float: left;
+}
+
+#debug {
+	float: left;
+}
+
+.dicTitleItem {
+	float: left;
+}

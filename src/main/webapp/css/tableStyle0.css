@@ -1,0 +1,24 @@
+table {
+	border-spacing: 0px 0px;
+	font-size: 0.8em;
+	line-height: 150%;
+	margin: 10px 0px 0px 0;
+	width: 100%;
+}
+
+table th {
+	text-align: left;
+	font-weight: bold;
+}
+
+table tr {
+	border-bottom: 1px solid #EBEFF9;
+}
+
+table td {
+	padding: 0 0 0 3px;
+}
+
+.colorStyleTable {
+	background: #EBEFF9;
+}

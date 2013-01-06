@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE sqlMap      
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="en">
+
+	<typeAlias alias="ecp" type="com.wiloon.enlab.domain.ECP" />
+
+	<select id="selectECP" resultClass="ecp">
+		select
+		id,english,chinese,pronunciation,load_count as count
+		from tbl_ecp ecp
+		where lower(ecp.english)=lower('$english$')
+	</select>
+
+	<insert id="insertECP">
+		insert into tbl_ecp
+		(english,chinese,pronunciation,create_datetime)
+		values
+		(
+		#english#,#chinese#,#pronunciation#,now())
+	 </insert>
+
+	<update id="updateEcp">
+		update tbl_ecp ecp
+		set
+		ecp.english=#english#,
+		ecp.chinese=#chinese#,
+		ecp.pronunciation=#pronunciation#,
+		ecp.update_datetime=now(),
+		ecp.load_count=#count#
+		where ecp.id=#ID#
+	</update>
+
+	<update id="updateEcpCount">
+		update tbl_ecp ecp
+		set
+		ecp.load_count=#count#
+		where
+		ecp.id=#ID#
+	</update>
+	<!-- <select id="selectEcpLike" resultClass="ecp"> <![CDATA[ select id,english,chinese,pronunciation,load_count 
+		as count from tbl_ecp ecp where ecp.english like '$english$%' and rownum 
+		< 15 order by ecp.english,ecp.chinese,ecp.pronunciation ]]> </select> -->
+	<select id="selectWordCount" resultClass="int">
+		select count(1) from
+		tbl_ecp ecp
+	</select>
+
+	<select id="selectWordCountToday" resultClass="int">
+		select count(1)
+		from tbl_ecp ecp where
+		date_format(ecp.create_datetime,'%Y/%m/%d')=date_format(now(),'%Y/%m/%d')
+	</select>
+
+	<select id="selectWordCountTodayUpdate" resultClass="int">
+		select
+		count(1)
+		from tbl_ecp ecp where
+		date_format(ecp.update_datetime,'%Y/%m/%d')=date_format(now(),'%Y/%m/%d')
+	</select>
+
+	<select id="selectEnRagne" resultClass="ecp">
+		<![CDATA[
+			SELECT id,english,
+      		chinese,
+      		pronunciation,
+      		load_count as count
+    		FROM tbl_ecp ecp
+    		WHERE lower(ecp.english) >=lower('$english$')
+    		ORDER BY lower(ecp.english) ASC    
+  			limit 0, 20
+		]]>
+	</select>
+
+	<insert id="insertLog">
+		insert into tbl_log
+		(id_word,log_type,message,create_datetime)
+		values
+		(
+		#wordId#,#logType#,#message#,now())
+	 </insert>
+	<select id="selectTop10" resultClass="ecp">
+		select distinct tmp.english
+		from
+		(select ecp.english from tbl_log log join
+		tbl_ecp ecp on
+		log.id_word=ecp.id order by log.create_datetime desc
+		limit 0,50) tmp
+		limit 0,15
+	</select>
+
+	<select id="selectWordById" resultClass="ecp">
+		SELECT id,english,
+		chinese,
+		pronunciation,
+		load_count as count
+		FROM tbl_ecp ecp
+		WHERE ecp.id = #ID#
+	</select>
+</sqlMap>

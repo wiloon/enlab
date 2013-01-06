@@ -1,0 +1,39 @@
+body {
+    margin: 0px 10px 0px 10px;
+    padding: 0 0;
+    font-family: "Verdana", "Arial", "sans-serif";
+    background: #fff;
+}
+
+ul {
+    margin: 0 0 0 0;
+    display: block;
+    list-style-type: disc;
+    padding: 0 0 0 0;
+}
+
+ul li {
+    font-size: 10px;
+    /*line-height: 220%;*/
+    list-style-type: none;
+    margin: 0 0 0 0;
+    padding: 3px 0 3px 0;
+    border-bottom: 1px solid black;
+}
+
+.timestamp {
+    margin: 0 3px 0 0;
+    color: #000000;
+}
+
+#btnRefresh {
+    float: left;
+}
+
+#lastCheckTime {
+    float: right;
+}
+
+#info {
+    font-size: 8px;
+}

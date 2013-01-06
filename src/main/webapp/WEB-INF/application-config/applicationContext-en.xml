@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.0.xsd">
+
+    <bean id="genericService" class="com.wiloon.enlab.core.service.impl.GenericService">
+        <constructor-arg>
+            <bean class="com.wiloon.enlab.core.dao.impl.GenericDao">
+                <property name="dataSource" ref="dataSource"/>
+                <property name="sqlMapClient" ref="sqlMapClient"/>
+            </bean>
+        </constructor-arg>
+    </bean>
+
+    <bean id="enService" class="com.wiloon.enlab.model.en.service.impl.EnService">
+        <constructor-arg>
+            <bean class="com.wiloon.enlab.core.dao.impl.GenericDao">
+                <property name="dataSource" ref="dataSource"/>
+                <property name="sqlMapClient" ref="sqlMapClient"/>
+            </bean>
+        </constructor-arg>
+        <constructor-arg>
+            <bean class="com.wiloon.enlab.core.dao.impl.GenericDao">
+                <property name="dataSource" ref="dataSource"/>
+                <property name="sqlMapClient" ref="sqlMapClient"/>
+            </bean>
+        </constructor-arg>
+    </bean>
+
+
+    <bean id="enAction" class="com.wiloon.enlab.model.en.action.EnAction" scope="prototype">
+        <property name="enService" ref="enService"/>
+    </bean>
+
+    <bean id="fxNews" class="com.wiloon.enlab.model.fxnews.FxNews" scope="prototype">
+        <property name="fxNewsHelper" ref="fxNewsHelper"/>
+    </bean>
+
+    <bean id="newsStatus" class="com.wiloon.enlab.model.fxnews.NewsStatus" scope="prototype">
+        <property name="fxNewsHelper" ref="fxNewsHelper"/>
+    </bean>
+
+    <bean id="fxNewsHelper" class="com.wiloon.enlab.model.fxnews.FxNewsHelper" scope="singleton">
+
+    </bean>
+
+    <bean id="loginAction" class="com.wiloon.enlab.controller.LoginAction" scope="prototype">
+
+    </bean>
+</beans>

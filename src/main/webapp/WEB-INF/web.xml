@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+			     http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+
+    <!-- shiro filter -->
+    <filter>
+        <filter-name>shiroFilter</filter-name>
+        <filter-class>
+            org.springframework.web.filter.DelegatingFilterProxy
+        </filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>shiroFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+    <filter>
+        <filter-name>struts-cleanup</filter-name>
+        <filter-class>org.apache.struts2.dispatcher.ActionContextCleanUp</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>struts-cleanup</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+    <filter>
+        <filter-name>struts2</filter-name>
+        <!-- <filter-class>org.apache.struts2.dispatcher.FilterDispatcher</filter-class> -->
+        <filter-class>org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>struts2</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>/WEB-INF/applicationContext.xml,/WEB-INF/application-config/applicationContext-*.xml</param-value>
+    </context-param>
+
+    <context-param>
+        <param-name>log4jConfigLocation</param-name>
+        <param-value>classpath:log4j.xml</param-value>
+    </context-param>
+
+    <!-- check if log4j.xml changed every xx ms -->
+    <context-param>
+        <param-name>log4jRefreshInterval</param-name>
+        <param-value>10000</param-value>
+    </context-param>
+
+
+    <!-- spring listener-->
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
+
+    <!-- LOG4J listener -->
+    <listener>
+        <listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>
+    </listener>
+
+    <!-- welcome file -->
+    <welcome-file-list>
+        <welcome-file>/index.jsp</welcome-file>
+    </welcome-file-list>
+
+</web-app>
