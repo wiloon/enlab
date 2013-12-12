@@ -320,13 +320,13 @@ textarea {
 }
 
 a {
-  color: #428bca;
+  color:#FFCC01;
   text-decoration: none;
 }
 
 a:hover,
 a:focus {
-  color: #2a6496;
+  color: #ffffff;
   text-decoration: underline;
 }
 
@@ -4107,7 +4107,7 @@ textarea.input-group-sm > .input-group-btn > .btn {
 .nav > li > a:hover,
 .nav > li > a:focus {
   text-decoration: none;
-  background-color: #eeeeee;
+  background-color: #FFCC01;
 }
 
 .nav > li.disabled > a {
@@ -4238,7 +4238,7 @@ textarea.input-group-sm > .input-group-btn > .btn {
 .nav-pills > li.active > a:hover,
 .nav-pills > li.active > a:focus {
   color: #ffffff;
-  background-color: #428bca;
+  background-color: #FFCC01;
 }
 
 .nav-stacked > li {
