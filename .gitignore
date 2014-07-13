@@ -1,6 +1,16 @@
+.classpath
+.project
+.settings
+.gradle
+.idea
+bin
+build
+out
 *.class
+target
 
-# Package Files #
-*.jar
-*.war
-*.ear
+*.iml
+*.ipr
+*.iws
+enlab/classes/
+*.log
