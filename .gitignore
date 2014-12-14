@@ -13,4 +13,5 @@ target
 *.ipr
 *.iws
 enlab/classes/
-*.log
+*.lognn
+classes
