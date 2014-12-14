@@ -147,14 +147,6 @@
 </div>
 <!-- display end -->
 <footer>
-
-    <shiro:guest>
-        Hi there! Please <a href="login.jsp">Login</a> or <a href="signup.jsp">Signup</a> today!
-    </shiro:guest>
-    <shiro:user>
-        Welcome back John! Not John? Click <a href="login.jsp">here<a> to login.
-    </shiro:user>
-
 </footer>
 <!-- <div id="progressbar"></div> -->
 
