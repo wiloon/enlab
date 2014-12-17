@@ -2,7 +2,7 @@ package com.wiloon.enlab.model.en.service.impl;
 
 import java.util.List;
 
-import org.apache.log4j.Logger;
+
 
 import com.wiloon.enlab.core.dao.IGenericDao;
 import com.wiloon.enlab.core.service.impl.GenericService;
@@ -11,12 +11,14 @@ import com.wiloon.enlab.domain.EnInfo;
 import com.wiloon.enlab.domain.ECPLog;
 import com.wiloon.enlab.domain.LogType;
 import com.wiloon.enlab.model.en.service.IEnService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class EnService extends GenericService<ECP, Long> implements IEnService {
     /**
      * Logger for this class
      */
-    private static final Logger logger = Logger.getLogger(EnService.class);
+    private static Logger logger = LoggerFactory.getLogger(EnService.class);
     private IGenericDao<ECPLog, Long> logDao;
 
     public EnService(IGenericDao<ECP, Long> genericDao, IGenericDao<ECPLog, Long> logDao) {

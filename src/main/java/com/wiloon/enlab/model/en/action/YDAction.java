@@ -1,10 +1,9 @@
 package com.wiloon.enlab.model.en.action;
 
-import org.apache.log4j.Logger;
-
-import com.opensymphony.xwork2.ActionSupport;
 import com.wiloon.enlab.domain.ECP;
 import com.wiloon.enlab.model.en.service.IWebDictService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * 
@@ -12,11 +11,11 @@ import com.wiloon.enlab.model.en.service.IWebDictService;
  * 
  * 
  */
-public class YDAction extends ActionSupport {
+public class YDAction  {
     /**
      * Logger for this class
      */
-    private static final Logger logger = Logger.getLogger(YDAction.class);
+    private static Logger logger = LoggerFactory.getLogger(YDAction.class);
 
     /**
      * 
@@ -31,7 +30,7 @@ public class YDAction extends ActionSupport {
 	}
 
 	ecp = ydService.translate(ecp.getEnglish());
-	return SUCCESS;
+	return "";
     }
 
     public ECP getEcp() {

@@ -2,13 +2,13 @@ package com.wiloon.enlab.model.en.action;
 
 import java.util.List;
 
-import org.apache.log4j.Logger;
 
-import com.opensymphony.xwork2.ActionSupport;
 import com.wiloon.enlab.domain.ECP;
 import com.wiloon.enlab.domain.EnInfo;
 import com.wiloon.enlab.domain.LogType;
 import com.wiloon.enlab.model.en.service.IEnService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * 
@@ -16,15 +16,14 @@ import com.wiloon.enlab.model.en.service.IEnService;
  * @author www.wiloon.com
  * @version 2.0
  * 
- *          <B>test</B>
- * @see com.wiloon.enlab.core.dao.impl.GenericDao
+ *
  * 
  */
-public class EnAction extends ActionSupport {
+public class EnAction  {
 
     private static final long serialVersionUID = -4292115631703244026L;
     private IEnService enService;
-    private final Logger logger = Logger.getLogger(EnAction.class);
+    private static Logger logger = LoggerFactory.getLogger(EnAction.class);
     private EnInfo enInfo;
     private ECP ecp;
     private String strKey;
@@ -38,7 +37,7 @@ public class EnAction extends ActionSupport {
      */
     public String execute() {
 
-	return SUCCESS;
+	return "";
     }
 
     /**
@@ -60,7 +59,7 @@ public class EnAction extends ActionSupport {
 	List<ECP> lstEn = enService.getList("selectECP", ecp);
 	enService.insertLog(lstEn.get(0), LogType.Insert);
 	enInfo = enService.searchDic(ecp);
-	return SUCCESS;
+	return "";
     }
 
     // search the word in dict according to the character user input
@@ -71,7 +70,7 @@ public class EnAction extends ActionSupport {
 	logger.info("result size: " + enInfo.getLstEcp().size());
 
 	message = "search successfully.";
-	return SUCCESS;
+	return "";
     }
 
     public String enUpdate() throws Exception {
@@ -89,7 +88,7 @@ public class EnAction extends ActionSupport {
 	    if (logger.isDebugEnabled()) {
 		logger.debug("enUpdate() - end");
 	    }
-	    return SUCCESS;
+	    return "";
 	}
 
 	// ecp formatter
@@ -106,7 +105,7 @@ public class EnAction extends ActionSupport {
 	if (logger.isDebugEnabled()) {
 	    logger.debug("enUpdate() - end");
 	}
-	return SUCCESS;
+	return "";
     }
 
     public String updateCount() {
@@ -115,7 +114,7 @@ public class EnAction extends ActionSupport {
 	enInfo = enService.getWordById(ecp);
 	enService.insertLog(ecp, LogType.UpdateCount);
 	enInfo.setLstTop10(enService.getList("selectTop10", ecp));
-	return SUCCESS;
+	return "";
     }
 
     // get/set

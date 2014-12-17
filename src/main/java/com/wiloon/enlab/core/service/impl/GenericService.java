@@ -3,10 +3,11 @@ package com.wiloon.enlab.core.service.impl;
 import java.io.Serializable;
 import java.util.List;
 
-import org.apache.log4j.Logger;
 
 import com.wiloon.enlab.core.dao.IGenericDao;
 import com.wiloon.enlab.core.service.IGenericService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 
 /**
@@ -15,11 +16,11 @@ import com.wiloon.enlab.core.service.IGenericService;
  *
  * @param <T>
  * @param <PK>
- * @see com.wiloon.enlab.core.dao.impl.GenericDao
+
  */
 public class GenericService<T, PK extends Serializable> implements
 		IGenericService<T, PK> {
-	protected final Logger logger = Logger.getLogger(GenericService.class);
+    private static Logger logger = LoggerFactory.getLogger(GenericService.class);
 	protected IGenericDao<T, PK> genericDao;
 
 	public GenericService(final IGenericDao<T, PK> genericDao) {

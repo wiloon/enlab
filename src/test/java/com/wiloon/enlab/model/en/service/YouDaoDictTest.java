@@ -15,7 +15,7 @@ public class YouDaoDictTest {
 		ECP ecp = wds.translate("test");
 		Assert.assertNotNull(ecp);
 		Assert.assertEquals("test", ecp.getEnglish());
-		Assert.assertEquals("n.试验；检验vt.试验；测试vi.试验；测试", ecp.getChinese());
+		Assert.assertEquals("n.试验；检验vt.试验；测试vi.试验；测试n.(Test)人名；(英)特斯特", ecp.getChinese());
 		Assert.assertEquals("[test]", ecp.getPronunciation());
 	}
 

@@ -1,12 +1,14 @@
 package com.wiloon.enlab.domain;
 
-import org.apache.log4j.Logger;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class Pronunciation {
     /**
      * Logger for this class
      */
-    private static final Logger logger = Logger.getLogger(Pronunciation.class);
+    private static Logger logger = LoggerFactory.getLogger(Pronunciation.class);
 
     private String pronunciation;
 

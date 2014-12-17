@@ -8,16 +8,18 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.charset.Charset;
 
-import org.apache.log4j.Logger;
+
 
 import com.wiloon.enlab.domain.ECP;
 import com.wiloon.enlab.model.en.service.IWebDictService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class WebDictService implements IWebDictService {
 	/**
 	 * Logger for this class
 	 */
-	private static final Logger logger = Logger.getLogger(WebDictService.class);
+    private static Logger logger = LoggerFactory.getLogger(WebDictService.class);
 	private ECP ecp;
 
 	@Override
