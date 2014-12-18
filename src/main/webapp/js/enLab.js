@@ -19,6 +19,7 @@ var strFlgMatch;
 var isCtrlPressed
 
 function onKeyDownEn(obj) {
+    console.log("on key down en.");
     var intKeyCode;
     intKeyCode = window.event.keyCode;
 

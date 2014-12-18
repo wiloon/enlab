@@ -7,14 +7,13 @@
     <title>EnLab</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/themes/base/jquery.ui.all.css"/>
 
-    <script src="${pageContext.request.contextPath}/js/jquery-1.6.2.js"></script>
-    <script src="${pageContext.request.contextPath}/js/ui/jquery.ui.core.js"></script>
-    <script src="${pageContext.request.contextPath}/js/ui/jquery.ui.widget.js"></script>
-    <script src="${pageContext.request.contextPath}/js/ui/jquery.ui.button.js"></script>
-    <script src="${pageContext.request.contextPath}/js/ui/jquery.effects.core.js"></script>
-    <script src="${pageContext.request.contextPath}/js/ui/jquery.effects.highlight.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/bower_components/jquery/dist/jquery.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/bower_components/jqueryui/ui/core.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/bower_components/jqueryui/ui/widget.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/bower_components/jqueryui/ui/button.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/bower_components/jqueryui/ui/effect-highlight.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/bower_components/jqueryui/ui/effect-fade.js"></script>
     <script src="${pageContext.request.contextPath}/js/ui/jquery.effects.fade.js"></script>
-    <script src="${pageContext.request.contextPath}/js/ui/jquery.ui.progressbar.js"></script>
 
     <!-- enLab.js -->
     <script src="${pageContext.request.contextPath}/js/enLab.js">
@@ -47,11 +46,10 @@
         <!-- English -->
         <div id="idInputTextEn" class="inputField">
             <span id="idLabelEn">English: </span>
-            <s:textfield id="english" name="ecp.english"
+            <input id="english" name="ecp.english" type="text"
                          onclick="setKeyLocationEn(this);" onkeyup='keyEventEn(this.value);'
                          onkeydown="onKeyDownEn(this)" onmouseover="enOnMouseOver(this)"
-                         autofocus="autofocus">
-            </s:textfield>
+                         autofocus="autofocus"/>
 
             <!-- button search -->
             <input id="btnSearch" type="button" value="Search"
@@ -74,17 +72,17 @@
         <!-- chinese -->
         <div id="idInputTextCn" class="inputField">
             <span>Chinese: </span>
-            <s:textfield id="chinese" name="ecp.chinese" onkeyup='cnKeyEvent();'
-                         onclick='setKeyLocationCn()' onkeydown="onKeyDownCn(this)"
-                         onmouseover="cnOnMouseOver(this)"></s:textfield>
+            <input id="chinese" name="ecp.chinese" onkeyup='cnKeyEvent();' type="text"
+                   onclick='setKeyLocationCn()' onkeydown="onKeyDownCn(this)"
+                         onmouseover="cnOnMouseOver(this)"/>
         </div>
 
         <!-- pronunciation -->
         <div id="idInputTextP" class="inputField">
             <span>Pronunciation:</span>
-            <s:textfield id="pronunciation" name="ecp.pronunciation"
-                         onkeyup="prnKeyEvent();" onclick='setKeyLocationPro(this)'
-                         onmouseover="pronOnMouseOver(this)"></s:textfield>
+            <input id="pronunciation" name="ecp.pronunciation" type="text"
+                   onkeyup="prnKeyEvent();" onclick='setKeyLocationPro(this)'
+                         onmouseover="pronOnMouseOver(this)"/>
 
             <!-- button add or update -->
             <input id="btnAddOrUpdate" type="button" value="Add/Update"
