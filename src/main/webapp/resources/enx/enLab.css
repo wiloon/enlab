@@ -6,10 +6,10 @@
 
 @font-face {
 	font-family: 'PusabRegular';
-	src: url('../fonts/PUSAB___.eot');
-	src: local('Pusab'), url('../fonts/PUSAB___.woff') format('woff'),
-		url('../fonts/PUSAB___.ttf') format('truetype'),
-		url('../fonts/PUSAB___.svg#Pusab') format('svg');
+	src: url('../../fonts/PUSAB___.eot');
+	src: local('Pusab'), url('../../fonts/PUSAB___.woff') format('woff'),
+		url('../../fonts/PUSAB___.ttf') format('truetype'),
+		url('../../fonts/PUSAB___.svg#Pusab') format('svg');
 }
 
 body {

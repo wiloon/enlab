@@ -16,15 +16,15 @@
     <script src="${pageContext.request.contextPath}/js/ui/jquery.effects.fade.js"></script>
 
     <!-- enLab.js -->
-    <script src="${pageContext.request.contextPath}/js/enLab.js">
+    <script src="${pageContext.request.contextPath}/resources/enx/enLab.js">
 
     </script>
 
     <!-- enLab.css -->
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/enLab.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/resources/enx/enLab.css" media="screen">
 
     <!-- table style.css -->
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/tableStyle0.css"
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/resources/enx/tableStyle0.css"
           media="screen">
 
 </head>

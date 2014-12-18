@@ -6,8 +6,8 @@
     <meta charset="utf-8">
     <title>fxnews</title>
     <script src="${pageContext.request.contextPath}/js/jquery-1.8.1.min.js"></script>
-    <script src="${pageContext.request.contextPath}/js/fxnews.js"></script>
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/fxnews.css" media="screen">
+    <script src="${pageContext.request.contextPath}/resources/enx/fxnews.js"></script>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/resources/enx/fxnews.css" media="screen">
 </head>
 <body>
 <div id="info">
