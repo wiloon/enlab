@@ -19,7 +19,6 @@ var strFlgMatch;
 var isCtrlPressed
 
 function onKeyDownEn(obj) {
-    console.log("on key down en.");
     var intKeyCode;
     intKeyCode = window.event.keyCode;
 
@@ -114,9 +113,7 @@ function keyEventEn(strEnglish) {
             clearField("CP");
             // set timeout for search action,
             timerSearch = setTimeout("searchDic('" + strEnglish + "')", 400);
-            $("#progressbar").progressbar({
-                value:37
-            });
+
         }
 
     } else {
@@ -173,19 +170,19 @@ function addWord() {
     } else {
         $
             .ajax({
-                url:'addWordAction.action',
-                type:'POST',
-                dataType:'json',
-                data:'ecp.english=' + $("#english").attr("value")
+                url: 'addWordAction.action',
+                type: 'POST',
+                dataType: 'json',
+                data: 'ecp.english=' + $("#english").attr("value")
                     + '&ecp.chinese=' + $("#chinese").attr("value")
                     + '&ecp.pronunciation='
                     + $("#pronunciation").attr("value"),
-                timeout:5000,
-                error:function () {
+                timeout: 5000,
+                error: function () {
                     showStatus('add word error');
                     showLoadingIcon(false);
                 },
-                success:function (data) {
+                success: function (data) {
                     showStatus(data.message);
                     updatePage(data);
                     showLoadingIcon(false);
@@ -197,24 +194,27 @@ function addWord() {
 // search word in DB
 function searchDic(strEnglish) {
     if (strEnglish == '') {
-        strEnglish = $("#english").attr("value");
+        strEnglish = $("#english").val();
 
     }
     showLoadingIcon(true);
     // update status.
     showStatus('Loading... '.concat(strEnglish));
 
+    var requestJson = {'word': strEnglish};
     // ajax, send search request to server;
     $.ajax({
-        url:'searchDic.action' + '?ecp.english=' + strEnglish,
-        type:'GET',
-        dataType:'json',
-        timeout:5000,
-        error:function () {
+        url: 'search',
+        type: 'GET',
+        data: requestJson,
+        dataType: 'json',
+        timeout: 5000,
+        error: function () {
             showStatus('Error when loading "' + strEnglish + '"');
             $("#iconLoading").css("display", "none");
         },
-        success:function (data) {
+        success: function (data) {
+            console.log("response=" + data);
             updatePage(data);
             showLoadingIcon(false);
         }
@@ -228,7 +228,6 @@ function showStatus(strContent) {
     $("#status").css("width", intContentSize + "px");
     $("#status").html(strContent);
     timerTmp = setTimeout("fadeKey()", 2000);
-
 }
 
 function updateStatusColor(strColor) {
@@ -237,7 +236,7 @@ function updateStatusColor(strColor) {
 
 function fadeKey() {
     var options = {};
-    $("#status").effect("fade", options, 1000, callback);
+    //$("#status").effect("fade", options, 1000, callback);
 }
 
 function highlightId(strId) {
@@ -251,7 +250,7 @@ function updateTable(data) {
     var bolLike = false;
     var highlightNoMatchFlag = true;
     strFlgMatch = 'UNMATCH';
-    $.each(data.enInfo.lstEcp, function (i, n) {
+    $.each(data.lstEcp, function (i, n) {
 
         var row = $("#template").clone();
         var ecpId = n.ID;
@@ -266,7 +265,7 @@ function updateTable(data) {
             row.attr('class', 'colorStyleTable');
         }
 
-        var strKey = $("#english").attr('value').trim();
+        var strKey = $("#english").val().trim();
         strKey = strKey.toLowerCase();
         var strTmp = n.english;
 
@@ -351,12 +350,12 @@ function clearTable() {
 }
 
 function updateInfo(data) {
-    $("#total").html(data.enInfo.wordCount);
-    $("#today").html(data.enInfo.wordCountToday);
-    $("#todayUpdate").html(data.enInfo.countTodayUpdate);
-    $("#wordCountBin").html(data.enInfo.wordCountBin);
-    $("#wordCountHex").html(data.enInfo.wordCoountHex);
-    $("#wordCountDec").html(data.enInfo.wordCount);
+    $("#total").html(data.wordCount);
+    $("#today").html(data.wordCountToday);
+    $("#todayUpdate").html(data.countTodayUpdate);
+    $("#wordCountBin").html(data.wordCountBin);
+    $("#wordCountHex").html(data.wordCoountHex);
+    $("#wordCountDec").html(data.wordCount);
 
 }
 
@@ -370,19 +369,19 @@ function clearTextField() {
 function update() {
     showLoadingIcon(true);
     $.ajax({
-        url:'enUpdateAction.action',
-        type:'POST',
-        dataType:'json',
-        data:'ecp.english=' + $("#english").attr("value") + '&ecp.chinese='
-            + $("#chinese").attr("value") + '&ecp.pronunciation='
-            + $("#pronunciation").attr("value") + '&ecp.ID=' + intEcpId
+        url: 'enUpdateAction.action',
+        type: 'POST',
+        dataType: 'json',
+        data: 'ecp.english=' + $("#english").val() + '&ecp.chinese='
+            + $("#chinese").val() + '&ecp.pronunciation='
+            + $("#pronunciation").val() + '&ecp.ID=' + intEcpId
             + '&ecp.count=' + intEcpCount,
-        timeout:5000,
-        error:function () {
+        timeout: 5000,
+        error: function () {
             showStatus('Error - update');
             showLoadingIcon(false);
         },
-        success:function (data) {
+        success: function (data) {
             showStatus(data.message)
             updatePage(data);
             showLoadingIcon(false);
@@ -401,7 +400,7 @@ function callback() {
 function updateTop10(data) {
     $(".top10Item").remove();
     var li;
-    $.each(data.enInfo.lstTop10, function (i, n) {
+    $.each(data.lstTop10, function (i, n) {
         li = $("#top10liTemplate").clone();
         li.text(n.english);
         li.attr("id", "idTop10Item");
@@ -428,25 +427,25 @@ function updatePage(data) {
 function updateCount() {
     showLoadingIcon(true);
     // if the field english is empty, do nothing.
-    if ($("#english").attr("value").trim() == '') {
+    if ($("#english").val().trim() == '') {
         showLoadingIcon(false);
         return;
     } else {
         $.ajax({
-            url:'updateCountAction.action',
-            type:'POST',
-            dataType:'json',
-            data:'&ecp.ID=' + intEcpId + '&ecp.count=' + intEcpCount,
-            timeout:5000,
-            error:function () {
+            url: 'updateCountAction.action',
+            type: 'POST',
+            dataType: 'json',
+            data: '&ecp.ID=' + intEcpId + '&ecp.count=' + intEcpCount,
+            timeout: 5000,
+            error: function () {
                 showStatus('ajax Error');
 
                 showLoadingIcon(false);
             },
-            success:function (data) {
-                var ecp = data.enInfo.ecp
+            success: function (data) {
+                var ecp = data.ecp
                 var strId = "idCount" + ecp.ID
-                showStatus(data.enInfo.message);
+                showStatus(data.message);
                 intEcpCount = ecp.count;
                 $("#" + strId).text(intEcpCount);
                 highlightId(strId);
@@ -510,7 +509,7 @@ function pronOnMouseOver(obj) {
 }
 
 function enToLowerCase() {
-    str = $("#english").attr("value");
+    str = $("#english").val();
     str = str.toLowerCase();
     $("#english").val(str);
     $("#english").focus();
@@ -518,7 +517,7 @@ function enToLowerCase() {
 
 function searchYD() {
 
-    strEnglish = $("#english").attr("value");
+    strEnglish = $("#english").val();
 
     showLoadingIcon(true);
     // update status.
@@ -526,15 +525,15 @@ function searchYD() {
 
     // ajax, send search request to server;
     $.ajax({
-        url:'searchYD.action' + '?ecp.english=' + strEnglish,
-        type:'GET',
-        dataType:'json',
-        timeout:5000,
-        error:function () {
+        url: 'searchYD.action' + '?ecp.english=' + strEnglish,
+        type: 'GET',
+        dataType: 'json',
+        timeout: 5000,
+        error: function () {
             showStatus('Error "' + strEnglish + '"');
             showLoadingIcon(false);
         },
-        success:function (data) {
+        success: function (data) {
             updateTextFieldBaseOnYD(data.ecp);
             showLoadingIcon(false);
         }

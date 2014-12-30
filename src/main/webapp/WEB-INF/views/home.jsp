@@ -5,15 +5,17 @@
 <head>
     <meta charset="utf-8">
     <title>EnLab</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/themes/base/jquery.ui.all.css"/>
+    <link rel="stylesheet"
+          href="${pageContext.request.contextPath}/resources/bower_components/jqueryui/themes/base/all.css"/>
+
+    <link rel="stylesheet"
+          href="${pageContext.request.contextPath}/resources/bower_components/jqueryui/themes/smoothness/jquery-ui.css"/>
 
     <script src="${pageContext.request.contextPath}/resources/bower_components/jquery/dist/jquery.js"></script>
     <script src="${pageContext.request.contextPath}/resources/bower_components/jqueryui/ui/core.js"></script>
     <script src="${pageContext.request.contextPath}/resources/bower_components/jqueryui/ui/widget.js"></script>
     <script src="${pageContext.request.contextPath}/resources/bower_components/jqueryui/ui/button.js"></script>
-    <script src="${pageContext.request.contextPath}/resources/bower_components/jqueryui/ui/effect-highlight.js"></script>
-    <script src="${pageContext.request.contextPath}/resources/bower_components/jqueryui/ui/effect-fade.js"></script>
-    <script src="${pageContext.request.contextPath}/js/ui/jquery.effects.fade.js"></script>
+
 
     <!-- enLab.js -->
     <script src="${pageContext.request.contextPath}/resources/enx/enLab.js">
@@ -21,12 +23,41 @@
     </script>
 
     <!-- enLab.css -->
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/resources/enx/enLab.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/resources/enx/enLab.css"
+          media="screen">
 
     <!-- table style.css -->
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/resources/enx/tableStyle0.css"
           media="screen">
+    <script>
+        $(function () {
+            console.log("enx init.");
+            $("#english").keyup(function () {
+                console.log("key up, value=" + this.value);
+                keyEventEn(this.value);
+            });
 
+            $("#english").keydown(function () {
+                console.log("key down, value=" + this.value);
+                onKeyDownEn(this);
+            });
+
+            $("#english").click(function () {
+                console.log("en click, value=" + this.value);
+                setKeyLocationEn(this);
+            });
+
+            $("#english").mouseover(function () {
+                console.log("mouse over");
+                enOnMouseOver(this);
+            });
+
+            $("#english").keypress(function () {
+                console.log("key press, value=" + this.value);
+
+            });
+        });
+    </script>
 </head>
 
 <body>
@@ -47,9 +78,7 @@
         <div id="idInputTextEn" class="inputField">
             <span id="idLabelEn">English: </span>
             <input id="english" name="ecp.english" type="text"
-                         onclick="setKeyLocationEn(this);" onkeyup='keyEventEn(this.value);'
-                         onkeydown="onKeyDownEn(this)" onmouseover="enOnMouseOver(this)"
-                         autofocus="autofocus"/>
+                   autofocus="autofocus"/>
 
             <!-- button search -->
             <input id="btnSearch" type="button" value="Search"
@@ -58,7 +87,6 @@
             <!-- button search you dao -->
             <input id="btnSearchYD" type="button" value="SearchYD"
                    onclick="searchYD()"/>
-
 
             <!-- button to lower case -->
             <input id="btnLC" type="button" value="TLC" alt="to lower case"
@@ -74,7 +102,7 @@
             <span>Chinese: </span>
             <input id="chinese" name="ecp.chinese" onkeyup='cnKeyEvent();' type="text"
                    onclick='setKeyLocationCn()' onkeydown="onKeyDownCn(this)"
-                         onmouseover="cnOnMouseOver(this)"/>
+                   onmouseover="cnOnMouseOver(this)"/>
         </div>
 
         <!-- pronunciation -->
@@ -82,7 +110,7 @@
             <span>Pronunciation:</span>
             <input id="pronunciation" name="ecp.pronunciation" type="text"
                    onkeyup="prnKeyEvent();" onclick='setKeyLocationPro(this)'
-                         onmouseover="pronOnMouseOver(this)"/>
+                   onmouseover="pronOnMouseOver(this)"/>
 
             <!-- button add or update -->
             <input id="btnAddOrUpdate" type="button" value="Add/Update"

@@ -16,8 +16,8 @@
 
     <context:component-scan base-package="com.wiloon.enlab"
                             use-default-filters="false">
-        <context:exclude-filter type="annotation"
-                                expression="org.springframework.stereotype.Controller"/>
+        <context:include-filter type="annotation"
+                                expression="org.springframework.stereotype.Service" />
     </context:component-scan>
 
     <bean id="propertyConfigurer"
