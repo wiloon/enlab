@@ -1,5 +1,6 @@
 package com.wiloon.enlab.dictionary;
 
+import com.wiloon.enlab.domain.ECP;
 import com.wiloon.enlab.domain.EnInfo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,8 +22,10 @@ public class DictionaryServiceImpl implements DictionaryService {
     @Override
     public EnInfo searchDic(String english) {
         logger.info("search dic key: " + english);
+        ECP ecp = new ECP();
+        ecp.setEnglish(english.toLowerCase());
         EnInfo enInfo = new EnInfo();
-        enInfo.setLstEcp(dictionaryMapper.selectEnRagne(english));
+        enInfo.setLstEcp(dictionaryMapper.selectEnRagne(ecp));
         enInfo.setLstTop10(dictionaryMapper.getTop10(english));
         enInfo.setWordCount(dictionaryMapper.getWordCount());
         enInfo.setWordCountToday(dictionaryMapper.getWordCountToday());

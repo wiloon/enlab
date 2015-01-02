@@ -36,4 +36,10 @@
         <property name="mapperInterface" value="com.wiloon.enlab.dictionary.DictionaryMapper"/>
         <property name="sqlSessionFactory" ref="sqlSessionFactory"/>
     </bean>
+
+    <!--<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">-->
+    <!--<property name="basePackage" value="com.hoo.mapper"/>-->
+    <!--<property name="markerInterface" value="com.hoo.mapper.SqlMapper"/>-->
+    <!--</bean>-->
+
 </beans>

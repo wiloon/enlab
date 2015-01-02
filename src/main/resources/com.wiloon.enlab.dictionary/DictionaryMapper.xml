@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="dictionary">
+    <select id="selectEnRagne"   resultType="ecp">
+        <![CDATA[
+			SELECT id,english,
+      		chinese,
+      		pronunciation,
+      		load_count as count
+    		FROM tbl_ecp ecp
+    		WHERE lower(ecp.english) >=lower('$english$')
+    		ORDER BY lower(ecp.english) ASC
+  			limit 0, 20
+		]]>
+    </select>
+
+
+</mapper>
