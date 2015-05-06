@@ -14,6 +14,7 @@ import com.wiloon.enlab.model.en.service.IEnService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+
 public class EnService extends GenericService<ECP, Long> implements IEnService {
     /**
      * Logger for this class
