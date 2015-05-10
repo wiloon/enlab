@@ -111,7 +111,7 @@ public class EnService extends GenericService<ECP, Long> implements IEnService {
     }
 
     public void insertLog(ECP ecp, LogType logType) {
-	ECPLog log = new ECPLog(ecp.getID(), logType);
+	ECPLog log = new ECPLog(ecp.getId(), logType);
 	logDao.insert("insertLog", log);
     }
 

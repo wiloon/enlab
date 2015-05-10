@@ -79,10 +79,10 @@ public class EnAction  {
 	    logger.debug("enUpdate() - start");
 	}
 
-	logger.info("udpate word, ID:" + ecp.getID() + "; EN:" + ecp.getEnglish() + "; CN:"
+	logger.info("udpate word, ID:" + ecp.getId() + "; EN:" + ecp.getEnglish() + "; CN:"
 		+ ecp.getChinese() + "; Pron:" + ecp.getPronunciation());
 
-	if (ecp.getID() < 0) {
+	if (ecp.getId() < 0) {
 	    message = "id < 0 udpate error";
 
 	    if (logger.isDebugEnabled()) {
@@ -110,7 +110,7 @@ public class EnAction  {
 
     public String updateCount() {
 	enService.ecpCountUpdate(ecp);
-	logger.info("update count... " + ecp.getCount() + " " + ecp.getID());
+	logger.info("update count... " + ecp.getCount() + " " + ecp.getId());
 	enInfo = enService.getWordById(ecp);
 	enService.insertLog(ecp, LogType.UpdateCount);
 	enInfo.setLstTop10(enService.getList("selectTop10", ecp));

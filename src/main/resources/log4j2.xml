@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Configuration>
     <Appenders>
-        <File name="File" fileName="logs/JavaEEX.log" append="false">
+        <File name="File" fileName="logs/EnX.log" append="false">
             <PatternLayout pattern="%highlight{%d{ISO8601} %-5level [%t] %C{3} (%F:%L) - %m}%n"/>
         </File>
         <Console name="STDOUT" target="SYSTEM_OUT">

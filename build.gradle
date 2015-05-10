@@ -3,13 +3,13 @@ apply plugin: 'maven'
 apply plugin: 'war'
 apply plugin: 'idea'
 
-group = 'com.wiloon.enlab'
+group = 'com.wiloon.enx'
 version = '1.0'
 
-description = """enlab"""
+description = "EnX"
 
-sourceCompatibility = 1.7
-targetCompatibility = 1.7
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
 
 def log4j_version = "2.0"
 def slf4j_version = "1.7.7"

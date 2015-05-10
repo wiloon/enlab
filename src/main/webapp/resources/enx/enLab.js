@@ -142,11 +142,11 @@ function prnKeyEvent() {
 }
 
 function addOrUpdate() {
-
+    console.log("addOrUpdate")
     if (strFlgMatch == 'MATCH') {
-        var strEn = $("#english").attr("value");
-        var strCn = $("#chinese").attr("value");
-        var strPr = $("#pronunciation").attr("value");
+        var strEn = $("#english").val();
+        var strCn = $("#chinese").val();
+        var strPr = $("#pronunciation").val();
         if ((strEcpCnTmp != strCn) || (strEcpPronTmp != strPr)
             || (strEcpEnTmp != strEn)) {
             update();
@@ -165,29 +165,43 @@ function addOrUpdate() {
 function addWord() {
     showLoadingIcon(true);
     // if the field english is empty, do nothing.
-    if ($("#english").attr("value").trim() == '') {
+    if ($("#english").val().trim() == '') {
         return;
     } else {
-        $
-            .ajax({
-                url: 'addWordAction.action',
-                type: 'POST',
-                dataType: 'json',
-                data: 'ecp.english=' + $("#english").attr("value")
-                    + '&ecp.chinese=' + $("#chinese").attr("value")
-                    + '&ecp.pronunciation='
-                    + $("#pronunciation").attr("value"),
-                timeout: 5000,
-                error: function () {
-                    showStatus('add word error');
-                    showLoadingIcon(false);
-                },
-                success: function (data) {
-                    showStatus(data.message);
-                    updatePage(data);
-                    showLoadingIcon(false);
-                }
-            });
+        var ecpData = {
+            english: $("#english").val(),
+            chinese: $("#chinese").val(),
+            pronunciation: $("#pronunciation").val()
+        }
+        $.post("addWordAction", ecpData, function (data) {
+            showStatus(data.message);
+            updatePage(data);
+            showLoadingIcon(false);
+        }, "json").fail(function () {
+            showStatus('add word error');
+            showLoadingIcon(false);
+        }).always(function () {
+            console.log("add word.")
+        })
+        //$
+        //    .ajax({
+        //        url: 'addWordAction',
+        //        type: 'POST',
+        //        dataType: 'json',
+        //        data: '&english=' + $("#english").val()
+        //            + '&chinese=' + $("#chinese").val()
+        //            + '&pronunciation='+ $("#pronunciation").val(),
+        //        timeout: 5000,
+        //        error: function () {
+        //            showStatus('add word error');
+        //            showLoadingIcon(false);
+        //        },
+        //        success: function (data) {
+        //            showStatus(data.message);
+        //            updatePage(data);
+        //            showLoadingIcon(false);
+        //        }
+        //    });
     }
 }
 
@@ -222,12 +236,16 @@ function searchDic(strEnglish) {
 }
 
 function showStatus(strContent) {
-    clearTimeout(timerTmp);
-    var intContentSize = strContent.length * 7;
-    $("#status").css("display", "block");
-    $("#status").css("width", intContentSize + "px");
-    $("#status").html(strContent);
-    timerTmp = setTimeout("fadeKey()", 2000);
+    console.log("strContent=" + strContent);
+    if (strContent != null) {
+        clearTimeout(timerTmp);
+        var intContentSize = strContent.length * 7;
+        $("#status").css("display", "block");
+        $("#status").css("width", intContentSize + "px");
+        $("#status").html(strContent);
+        timerTmp = setTimeout("fadeKey()", 2000);
+    }
+
 }
 
 function updateStatusColor(strColor) {
@@ -237,10 +255,12 @@ function updateStatusColor(strColor) {
 function fadeKey() {
     var options = {};
     //$("#status").effect("fade", options, 1000, callback);
+    $("#status").fadeOut();
 }
 
 function highlightId(strId) {
     var options = {};
+    console.log("highlight id=" + strId);
     $("#" + strId).effect("highlight", options, 800, callback);
 }
 function updateTable(data) {
@@ -253,13 +273,13 @@ function updateTable(data) {
     $.each(data.lstEcp, function (i, n) {
 
         var row = $("#template").clone();
-        var ecpId = n.ID;
+        var ecpId = n.id;
         row.find("#en").text(n.english);
         row.find("#cn").text(n.chinese);
         row.find("#p").text(n.pronunciation);
         row.find(".classColumnCount").attr("id", "idCount" + ecpId);
         row.find(".classColumnCount").text(n.count);
-        row.find("#enId").text(n.ID);
+        row.find("#enId").text(n.id);
 
         if (i % 2 == 1) {
             row.attr('class', 'colorStyleTable');
@@ -319,7 +339,7 @@ function updateTable(data) {
     }
 }
 function updateTextFieldBaseOnDic(ecp) {
-    intEcpId = ecp.ID;
+    intEcpId = ecp.id;
     strEcpEnTmp = ecp.english;
 
     strEcpCnTmp = ecp.chinese;
@@ -367,15 +387,16 @@ function clearTextField() {
 
 // update a word.
 function update() {
+    console.log("update")
     showLoadingIcon(true);
     $.ajax({
-        url: 'enUpdateAction.action',
+        url: 'enUpdateAction',
         type: 'POST',
         dataType: 'json',
-        data: 'ecp.english=' + $("#english").val() + '&ecp.chinese='
-            + $("#chinese").val() + '&ecp.pronunciation='
-            + $("#pronunciation").val() + '&ecp.ID=' + intEcpId
-            + '&ecp.count=' + intEcpCount,
+        data: 'english=' + $("#english").val() + '&chinese='
+        + $("#chinese").val() + '&pronunciation='
+        + $("#pronunciation").val() + '&ID=' + intEcpId
+        + '&count=' + intEcpCount,
         timeout: 5000,
         error: function () {
             showStatus('Error - update');
@@ -398,15 +419,19 @@ function callback() {
 
 // update top 10 list
 function updateTop10(data) {
-    $(".top10Item").remove();
-    var li;
-    $.each(data.lstTop10, function (i, n) {
-        li = $("#top10liTemplate").clone();
-        li.text(n.english);
-        li.attr("id", "idTop10Item");
-        li.attr("class", "top10Item");
-        li.appendTo("#top10ul");
-    });
+
+    if (data.lstTop10 != null) {
+        var li;
+        $(".top10Item").remove();
+        $.each(data.lstTop10, function (i, n) {
+            li = $("#top10liTemplate").clone();
+            li.text(n.english);
+            li.attr("id", "idTop10Item");
+            li.attr("class", "top10Item");
+            li.appendTo("#top10ul");
+        });
+    }
+
 }
 
 // top 10 on click, do search
@@ -425,6 +450,9 @@ function updatePage(data) {
 
 // update count
 function updateCount() {
+    console.log("update count");
+    var ecp = {id: intEcpId, count: intEcpCount};
+
     showLoadingIcon(true);
     // if the field english is empty, do nothing.
     if ($("#english").val().trim() == '') {
@@ -432,10 +460,10 @@ function updateCount() {
         return;
     } else {
         $.ajax({
-            url: 'updateCountAction.action',
+            url: 'updateCountAction',
             type: 'POST',
             dataType: 'json',
-            data: '&ecp.ID=' + intEcpId + '&ecp.count=' + intEcpCount,
+            data: '&ID=' + intEcpId + '&count=' + intEcpCount,
             timeout: 5000,
             error: function () {
                 showStatus('ajax Error');
@@ -444,7 +472,7 @@ function updateCount() {
             },
             success: function (data) {
                 var ecp = data.ecp
-                var strId = "idCount" + ecp.ID
+                var strId = "idCount" + ecp.id
                 showStatus(data.message);
                 intEcpCount = ecp.count;
                 $("#" + strId).text(intEcpCount);
@@ -457,6 +485,7 @@ function updateCount() {
 }
 
 function isChinese(str) {
+    console.log("isChinese,str=" + str);
     var i = 0;
 
     var blnRtn;
@@ -525,7 +554,7 @@ function searchYD() {
 
     // ajax, send search request to server;
     $.ajax({
-        url: 'searchYD.action' + '?ecp.english=' + strEnglish,
+        url: 'searchYD' + '?word=' + strEnglish,
         type: 'GET',
         dataType: 'json',
         timeout: 5000,
@@ -534,13 +563,14 @@ function searchYD() {
             showLoadingIcon(false);
         },
         success: function (data) {
-            updateTextFieldBaseOnYD(data.ecp);
+            updateTextFieldBaseOnYD(data);
             showLoadingIcon(false);
         }
     });
 }
 
 function isEndWithSpace(str) {
+    console.log("isEndWithSpace,str=" + str);
     var length = str.length;
     str = str.trim()
     var lengthTrim = str.length;

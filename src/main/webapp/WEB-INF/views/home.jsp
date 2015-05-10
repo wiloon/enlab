@@ -4,7 +4,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>EnLab</title>
+    <title>EnX</title>
     <link rel="stylesheet"
           href="${pageContext.request.contextPath}/resources/bower_components/jqueryui/themes/base/all.css"/>
 
@@ -15,7 +15,9 @@
     <script src="${pageContext.request.contextPath}/resources/bower_components/jqueryui/ui/core.js"></script>
     <script src="${pageContext.request.contextPath}/resources/bower_components/jqueryui/ui/widget.js"></script>
     <script src="${pageContext.request.contextPath}/resources/bower_components/jqueryui/ui/button.js"></script>
-
+    <script src="${pageContext.request.contextPath}/resources/bower_components/jqueryui/ui/effect.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/bower_components/jqueryui/ui/effect-highlight.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/enx/common.js"></script>
 
     <!-- enLab.js -->
     <script src="${pageContext.request.contextPath}/resources/enx/enLab.js">

@@ -1,8 +1,12 @@
 package com.wiloon.enlab.dictionary;
 
 import com.wiloon.enlab.domain.ECP;
+import com.wiloon.enlab.domain.ECPLog;
+import com.wiloon.enlab.domain.LogType;
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 import java.util.List;
 
@@ -30,4 +34,23 @@ public interface DictionaryMapper {
     //selectWordCountTodayUpdate
     @Select("select		count(1)		from tbl_ecp ecp where		date_format(ecp.update_datetime,'%Y/%m/%d')=date_format(now(),'%Y/%m/%d')")
     int getWordCountTodayUpdate();
+
+    @Select("SELECT id,english,chinese,pronunciation,load_count as count FROM tbl_ecp ecp WHERE ecp.id = #{id}")
+    ECP readWordByID(int id);
+
+    @Update("update tbl_ecp set load_count =#{count} where id=#{id}")
+    void updateEcpCount(ECP ecp);
+
+    @Update("update tbl_ecp set english =#{english},chinese =#{chinese},pronunciation =#{pronunciation},update_datetime =now() where id=#{id}")
+    void updateEcp(ECP ecp);
+
+    //insert log
+    @Insert("insert into tbl_log (id_word,log_type,message,create_datetime) values (#{wordId},#{logType},#{message},now())")
+    void insertLog(ECPLog log);
+
+    @Insert("insert into tbl_ecp (english,chinese,pronunciation,create_datetime) values (#{english},#{chinese},#{pronunciation},now())")
+    void insertWord(ECP ecp);
+
+    @Select("SELECT id,english,chinese,pronunciation,load_count as count FROM tbl_ecp ecp WHERE ecp.english = #{english}")
+    ECP getWordByEnglish(String english);
 }

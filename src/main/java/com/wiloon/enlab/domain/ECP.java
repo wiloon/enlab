@@ -1,19 +1,23 @@
 package com.wiloon.enlab.domain;
 
 public class ECP {
-	private int ID;
+	private int id;
 	private String english;
 	private String chinese;
 	private String pronunciation;
 
 	private int count;
 
-	public int getID() {
-		return ID;
+	public int getId() {
+		return id;
 	}
 
-	public void setID(int iD) {
-		ID = iD;
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public void setID(String iD) {
+		id = Integer.parseInt(iD);
 	}
 
 	public String getEnglish() {
@@ -51,5 +55,10 @@ public class ECP {
 	public void setCount(int count) {
 		this.count = count;
 	}
-
+	public void setCount(String count) {
+		this.count = Integer.parseInt(count);
+	}
+	public String toString(){
+		return "id="+id+",english="+english;
+	}
 }
