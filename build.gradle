@@ -25,12 +25,16 @@ dependencies {
     compile 'org.apache.commons:commons-lang3:3.3.2'
     compile 'org.apache.httpcomponents:httpclient:4.3.4'
     compile 'org.apache.httpcomponents:httpcore:4.3.2'
+
+    //log4j
     compile("org.apache.logging.log4j:log4j-api:$log4j_version",
             "org.apache.logging.log4j:log4j-core:$log4j_version",
             "org.apache.logging.log4j:log4j-slf4j-impl:$log4j_version",
             "org.slf4j:slf4j-api:$slf4j_version",
             "org.easymock:easymock:3.2"
     )
+
+    //spring
     compile(
             "org.springframework:spring-context:$versionSpring",
             "org.springframework:spring-web:$versionSpring",

@@ -26,6 +26,8 @@
 	<mvc:default-servlet-handler />
 
 	<!-- for local login -->
-	<mvc:view-controller path="/home" view-name="home" />
 	<mvc:view-controller path="/" view-name="home" />
+	<mvc:view-controller path="/home" view-name="home" />
+
+	<mvc:view-controller path="/enx" view-name="enx" />
 </beans>
