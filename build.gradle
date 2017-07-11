@@ -14,8 +14,8 @@ targetCompatibility = 1.5
 
 
 repositories {
-        
-     maven { url "http://repo.maven.apache.org/maven2" }
+    maven { url 'http://maven.wiloon.com:8081/nexus/content/groups/public/' }
+     //maven { url "http://repo.maven.apache.org/maven2" }
 }
 dependencies {
     compile group: 'commons-collections', name: 'commons-collections', version:'3.2.1'
