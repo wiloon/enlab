@@ -1,5 +1,4 @@
 enlab
 =====
 
-a English dictionary
-test
+An English dictionary
